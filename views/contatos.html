@@ -1,0 +1,39 @@
+<div>
+    <!-- <ui-alert title="Ops, aconteceu um problema!" message="message"></ui-alert> -->
+    <ui-alert title="Ops, aconteceu um problema!" ng-if="message">
+        {{message}}
+    </ui-alert>
+    <input class="form-control" type="text" ng-model="buscaContato" />
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Serial</th>
+            <th><a href="" ng-click="ordenaPor('nome')">Nome</a></th>
+            <th><a href="" ng-click="ordenaPor('telefone')">Telefone</a></th>
+            <th><a href="" ng-click="ordenaPor('operadora')">Operadora</a></th>
+            <th>Data</th>
+            <th></th>
+        </tr>
+
+        <!-- ng-class="contato.selecionado? 'selecionado negrito': ''" -->
+        <!-- ng-class="{selecionado: contato.selecionado, negrito: contato.selecionado}" -->
+        <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | limitTo: 10 | filter: {nome: buscaContato} | orderBy:campoOrdenacao:sentidoOrdenacao">
+            <th><input type="checkbox" ng-model="contato.selecionado" /></th>
+            <th>{{contato.serial}}</th> 
+            <th><a href="#/contatos/{{$index}}">{{contato.nome | name | stringLimit: 12}}</a></th>
+            <th>{{contato.telefone}}</th> 
+            <th>{{contato.operadora | lowercase}}</th> 
+            <!-- <th>{{contato.data | date}}</th> -> Formata no padrão, inclusive em inglês -->
+            <!-- <th>{{contato.data | date: 'dd/MM/yyyy'}}</th> -> Formata em dia mês ano -->
+            <th>{{contato.data | date: 'dd/MM/yyyy'}}</th>
+
+            <!-- Exemplo de teste utilizando o ngStyle -->
+            <!-- <th><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></th> -->
+
+            <!-- ng-repeat permite iterar também em um objeto, mas não fica tão claro quanto o expression acima -->
+            <!-- <th ng-repeat="(key, value) in contato">{{value}}</th> -->
+        </tr>
+    </table>
+    <hr/>
+    <a class="btn btn-primary btn-block" href="#/novoContato">Novo Contato</a>
+</div>

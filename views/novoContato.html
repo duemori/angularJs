@@ -1,0 +1,50 @@
+<div>
+    <form name="contatoForm" novalidate="">
+        <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" required="" ng-minlength="3" />
+        <!-- No regex, tem que estar entre \\, ^ no começo indica que começa com e $ no final que termina com. -->
+        <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" required="" ng-pattern="/^\(\d{2}\)\d{4,5}-\d{4}$/" />
+        <input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date="" />
+        <!-- operadora.nome for operadora in operadoras -> apresenta o nome e o value é o objeto completo -->
+        <!-- operadora.codigo as operadora.nome for operadora in operadoras -> apresenta o nome e o value é o código -->
+        <!-- operadora.nome group by operadora.categoria for operadora in operadoras -> group by permite agrupamento dentro do select por atributo -->
+        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome as formataOperadora(operadora) for operadora in operadoras | orderBy:'nome'">
+            <!-- Option apresentado como default. Sem ele fica uma opção vazia. -->
+            <option value="">Selecione uma operadora</option>
+        </select>
+    </form>
+    <!--
+    <div class="alert alert-danger" ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty">
+        Por favor, preencha o campo nome
+    </div>
+    <div class="alert alert-danger" ng-show="contatoForm.nome.$error.minlength && contatoForm.nome.$touched">
+        O campo nome deve ter no mínimo 10 caracteres
+    </div>
+    <div class="alert alert-danger" ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty">
+        Por favor, preencha o campo telefone
+    </div>
+    <div class="alert alert-danger" ng-show="contatoForm.telefone.$error.pattern && contatoForm.telefone.$touched">
+        Por favor, preencha o campo telefone corretamente
+    </div>
+    -->
+    <div ng-messages="contatoForm.nome.$error">
+        <div class="alert alert-danger" ng-message="required" ng-if="contatoForm.nome.$dirty">
+            Por favor, preencha o campo nome
+        </div>
+        <div class="alert alert-danger" ng-message="minlength" ng-if="contatoForm.nome.$touched">
+            O campo nome deve ter no mínimo 10 caracteres
+        </div>
+    </div>
+
+    <div ng-messages="contatoForm.telefone.$error">
+        <div class="alert alert-danger" ng-message="required" ng-if="contatoForm.telefone.$dirty">
+            Por favor, preencha o campo telefone
+        </div>
+        <div class="alert alert-danger" ng-message="pattern" ng-if="contatoForm.telefone.$touched">
+            Por favor, preencha o campo telefone corretamente
+        </div>
+    </div>
+
+    <!-- <button type="button" class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!(contato.nome && contato.telefone && contato.operadora)">Adicionar Contato</button> -->
+    <button type="button" class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
+    <button type="button" class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatoSelecionado(contatos)">Apagar Contatos</button>
+</div>

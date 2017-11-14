@@ -1,0 +1,40 @@
+<html ng-app="listaTelefonica">
+    <head>
+        <meta charset="UTF-8"> 
+        <title>Lista Telefônica</title>
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/ui.css">
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-route.js"></script>
+        <script src="lib/angular/angular-messages.js"></script>
+        <script src="lib/angular/i18n/angular-locale_pt-br.js"></script>
+        <script src="lib/ui/ui.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/config/routeConfig.js"></script>
+        <script src="js/controllers/listaTelefonicaCtrl.js"></script>
+        <script src="js/controllers/novoContatoCtrl.js"></script>
+        <script src="js/controllers/detalhesContatoCtrl.js"></script>
+        <script src="js/controllers/accordionsCtrl.js"></script>
+        <script src="js/services/contatosService.js"></script>
+        <script src="js/services/operadorasService.js"></script>
+        <script src="js/services/serialGeneratorService.js"></script>
+        <script src="js/values/configValue.js"></script>
+        <script src="js/config/serialGeneratorConfig.js"></script> 
+        <script src="js/filters/nameFilter.js"></script>
+        <script src="js/filters/stringLimitFilter.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <!-- ng-bind substitui elemento por expressão. Não mostra mensagem não carregada, mas expression é mais clara e explicita. -->
+            <!-- <h3 ng-bind="app"></h3> -->
+            <!-- <h3>{{app}}</h3> -->
+            <h3>Lista Telefônica</h3>
+            <hr/>
+            <div ng-view></div>
+        </div>
+
+        <!-- Necessário aspas simples para não tentar encontrar na variável de escopo -->
+        <div ng-include="'views/footer.html'"></div>
+    </body>
+</html>
