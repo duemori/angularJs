@@ -1,0 +1,30 @@
+{
+  "name": "listatelefonica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duemori/angularjs.git"
+  },
+  "author": "Daniel Uemori",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duemori/angularjs/issues"
+  },
+  "homepage": "https://github.com/duemori/angularjs#readme",
+  "dependencies": {
+    "angular": "^1.6.8",
+    "angular-locale-pt-br": "^1.3.16",
+    "angular-messages": "^1.6.8",
+    "angular-route": "^1.6.8",
+    "bootstrap": "^4.0.0",
+    "express": "^3.21.2"
+  }
+}
